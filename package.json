@@ -1,0 +1,50 @@
+{
+  "name": "@shopmacher/cookie-manager",
+  "version": "0.0.1",
+  "description": "A configurable cookie manager modal for GDPR compliance.",
+  "main": "lib/cookie-manager.js",
+  "jsnext:main": "lib/cookie-manager.js",
+  "module": "lib/cookie-manager.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack/dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/prod.js",
+    "test": "cross-env BABEL_ENV=test jest",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SHOPMACHER/cookie-manager.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Dennis Stockhofe",
+    "email": ""
+  },
+  "license": "MIT",
+  "homepage": "",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.2",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.21.0",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0"
+  },
+  "dependencies": {
+    "html-to-element": "^1.0.0"
+  }
+}
