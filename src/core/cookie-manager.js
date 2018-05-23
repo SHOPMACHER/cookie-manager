@@ -9,6 +9,7 @@ const _defaultOptions = {
     expiresAtDays: null,
     reloadAfter: false,
     disableBefore: false,
+    showOnTargetElement: '',
     cookies: []
 };
 
@@ -19,6 +20,14 @@ const cookieManager = customOptions => {
     };
     const cookieList = getCookies(options.cookieName);
     const cookies = cookieList.length > 0 ? cookieList[0].split(',') : [];
+    const $targetElement = document.querySelector(options.showOnTargetElement);
+
+    if ($targetElement) {
+        $targetElement.addEventListener(
+            'click',
+            show.bind(undefined, options)
+        );
+    }
 
     if (cookies.length > 0 || options.disableBefore) {
         Array.prototype.forEach.call(options.cookies, cookie => {
