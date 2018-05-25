@@ -1,4 +1,4 @@
-import { getCookies } from '../utils/cookie';
+import { createCookie, getCookies } from '../utils/cookie';
 import { show } from './show';
 
 const _defaultOptions = {
@@ -19,8 +19,16 @@ const cookieManager = customOptions => {
         ...customOptions
     };
     const cookieList = getCookies(options.cookieName);
+    const availableCookies = getCookies(`${options.cookieName}Available`).join(',');
+    const availableCookieList = options.cookies.map(cookie => cookie.name).join(',');
     const cookies = cookieList.length > 0 ? cookieList[0].split(',') : [];
     const $targetElement = document.querySelector(options.showOnTargetElement);
+    let forceUpdate = false;
+
+    if (!availableCookies || availableCookies !== availableCookieList) {
+        createCookie(`${options.cookieName}Available`, availableCookieList);
+        forceUpdate = true;
+    }
 
     if ($targetElement) {
         $targetElement.addEventListener(
@@ -42,12 +50,12 @@ const cookieManager = customOptions => {
             }
         });
 
-        if (cookies.length > 0) {
+        if (cookies.length > 0 && !forceUpdate) {
             return;
         }
     }
 
-    if (options.cookies.length > 0) {
+    if (options.cookies.length > 0 || forceUpdate) {
         show(options);
     }
 };

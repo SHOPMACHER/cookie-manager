@@ -28,6 +28,7 @@ const _getBody = options => {
     Array.prototype.forEach.call(options.cookies, (cookie, index) => {
         const $cookieWrapper = $html.querySelector('.content-cookies');
         const status = cookie.disabled ? 'checked disabled="true"' : '';
+        const preSelected = cookie.preSelected && !cookie.disabled ? 'checked' : '';
         const $checkbox = htmlToElement(`
             <div class="cookie-wrapper"><label for="cookie-${index}">
                 <input 
@@ -36,7 +37,8 @@ const _getBody = options => {
                     name="cookie-${index}" 
                     id="cookie-${index}" 
                     data-cookie="${cookie.name}" 
-                    ${status}>
+                    ${status}
+                    ${preSelected}>
                 ${cookie.text}
             </label></div>`);
 
