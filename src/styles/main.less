@@ -27,6 +27,10 @@
   z-index: 1002;
   color: #2b333f;
 
+  &--show-top {
+    position: inherit;
+  }
+
   .content {
     max-width: 600px;
     min-width: 320px;
@@ -41,6 +45,12 @@
     &--visible {
       transform: translateY(0);
     }
+
+    &--show-top {
+      max-width: 100%;
+      padding-top: 10px;
+    }
+
 
     &-cookies {
       margin-bottom: 20px;
