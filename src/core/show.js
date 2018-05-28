@@ -49,7 +49,7 @@ const _getBody = options => {
 };
 
 const __appendElementToBody = (onTop, $element) => {
-    if(onTop) {
+    if (onTop) {
         document.body.insertBefore($element, document.body.firstChild);
         return;
     }
@@ -66,17 +66,17 @@ export const show = options => {
 
     __appendElementToBody(showTop, $html);
     __appendElementToBody(showTop, $background);
-    
-    if(!showTop) {
+
+    if (!showTop) {
         $background.style.display = 'inherit';
     }
-    
+
     if ($content) {
         addEventListenerOnce($background, 'transitionend', () =>
             $content.classList.add('content--visible')
         );
-        
-        if(showTop) {
+
+        if (showTop) {
             $content.classList.add('content--show-top');
             $html.classList.add('cookie-manager--wrapper--show-top');
             $content.classList.add('content--visible');

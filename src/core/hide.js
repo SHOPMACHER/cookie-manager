@@ -1,16 +1,16 @@
 import { addEventListenerOnce } from '../utils/event-listener';
 
 const __slideUp = $el => {
-    let timing = '1000ms ease';
-    
+    const timing = '1000ms ease';
+
     $el.style.webkitTransition = 'initial';
     $el.style.transition = 'initial';
-    let height = $el.offsetHeight + 'px';
+    const height = $el.offsetHeight + 'px';
     $el.style.maxHeight = height;
     $el.style.overflow = 'hidden';
-    
-    $el.style.webkitTransition = 'max-height ' + timing + ', opacity ' + timing + '';
-    $el.style.transition = 'max-height ' + timing + ', opacity ' + timing + '';
+
+    $el.style.webkitTransition = `max-height ${timing}, opacity ${timing}`;
+    $el.style.transition = `max-height ${timing}, opacity ${timing}`;
     let endSlideDown = () => {
         $el.style.removeProperty('-webkit-transition');
         $el.style.removeProperty('transition');
@@ -33,24 +33,24 @@ const __remove = ($background, $html, options) => {
 
 export const hide = ($background, $html, options) => {
     const $content = $html.querySelector('.content');
-    
+
     addEventListenerOnce($background, 'transitionend', () => {
         __remove($background, $html, options);
     });
-    
+
     addEventListenerOnce($content, 'transitionend', () => {
-        if(options.showElementOnTop) {
+        if (options.showElementOnTop) {
             __remove($background, $html, options);
         }
-        
+
         $background.classList.add('cookie-manager--hidden')
     });
 
-    if(options.showElementOnTop) {
+    if (options.showElementOnTop) {
         __slideUp($html);
-        
+
         return;
     }
-    
+
     $content.classList.remove('content--visible');
 };
