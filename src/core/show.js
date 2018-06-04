@@ -48,21 +48,39 @@ const _getBody = options => {
     return $html;
 };
 
+const __appendElementToBody = (onTop, $element) => {
+    if (onTop) {
+        document.body.insertBefore($element, document.body.firstChild);
+        return;
+    }
+
+    document.body.appendChild($element);
+};
+
 export const show = options => {
     const $background = _getBackground();
     const $html = _getBody(options);
     const $content = $html.querySelector('.content');
     const $button = $html.querySelector('.content-button--accept');
+    const showTop = options.showElementOnTop;
 
-    document.body.appendChild($background);
-    document.body.appendChild($html);
+    __appendElementToBody(showTop, $html);
+    __appendElementToBody(showTop, $background);
 
-    $background.style.display = 'inherit';
+    if (!showTop) {
+        $background.style.display = 'inherit';
+    }
 
     if ($content) {
         addEventListenerOnce($background, 'transitionend', () =>
             $content.classList.add('content--visible')
         );
+
+        if (showTop) {
+            $content.classList.add('content--show-top');
+            $html.classList.add('cookie-manager--wrapper--show-top');
+            $content.classList.add('content--visible');
+        }
     }
 
     if ($button) {
