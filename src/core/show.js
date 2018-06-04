@@ -48,7 +48,7 @@ const _getBody = options => {
     return $html;
 };
 
-const __appendElementToBody = (onTop, $element) => {
+const _appendElementToBody = (onTop, $element) => {
     if (onTop) {
         document.body.insertBefore($element, document.body.firstChild);
         return;
@@ -58,16 +58,16 @@ const __appendElementToBody = (onTop, $element) => {
 };
 
 export const show = options => {
+    const { showElementOnTop } = options;
     const $background = _getBackground();
     const $html = _getBody(options);
     const $content = $html.querySelector('.content');
     const $button = $html.querySelector('.content-button--accept');
-    const showTop = options.showElementOnTop;
 
-    __appendElementToBody(showTop, $html);
-    __appendElementToBody(showTop, $background);
+    _appendElementToBody(showElementOnTop, $html);
+    _appendElementToBody(showElementOnTop, $background);
 
-    if (!showTop) {
+    if (!showElementOnTop) {
         $background.style.display = 'inherit';
     }
 
@@ -76,7 +76,7 @@ export const show = options => {
             $content.classList.add('content--visible')
         );
 
-        if (showTop) {
+        if (showElementOnTop) {
             $content.classList.add('content--show-top');
             $html.classList.add('cookie-manager--wrapper--show-top');
             $content.classList.add('content--visible');

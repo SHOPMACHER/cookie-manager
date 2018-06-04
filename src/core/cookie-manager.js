@@ -10,8 +10,8 @@ const _defaultOptions = {
     reloadAfter: false,
     disableBefore: false,
     showOnTargetElement: '',
-    cookies: [],
-    showElementOnTop: false
+    showElementOnTop: false,
+    cookies: []
 };
 
 const cookieManager = customOptions => {
