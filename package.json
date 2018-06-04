@@ -1,6 +1,6 @@
 {
   "name": "@shopmacher/cookie-manager",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A configurable cookie manager modal for GDPR compliance.",
   "main": "lib/cookie-manager.js",
   "jsnext:main": "lib/cookie-manager.js",
